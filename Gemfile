@@ -17,9 +17,10 @@ gem "jbuilder", "~> 2.5"
 gem "jquery-rails", "~> 4.3", ">= 4.3.3"
 gem "puma", "~> 3.11"
 gem "sass-rails", "~> 5.0"
-gem "sqlite3"
+
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
+gem "figaro"
 
 gem "bootstrap-will_paginate", "1.0.0"
 gem "carrierwave", "1.2.2"
@@ -31,6 +32,7 @@ gem "will_paginate", "3.1.6"
 
 group :development, :test do
   gem "byebug", platforms: %i(mri mingw x64_mingw)
+  gem "sqlite3"
 end
 
 group :development do

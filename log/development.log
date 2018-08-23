@@ -18340,3 +18340,1522 @@ Processing by StaticPagesController#home as HTML
 Completed 200 OK in 100ms (Views: 86.3ms | ActiveRecord: 3.8ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:44:29 +0700
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/vanle/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 75ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2018-08-23 16:44:30 +0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (10.2ms)
+  Rendered layouts/_rails_default.html.erb (2826.4ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 2853ms (Views: 2850.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:45:35 +0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_rails_default.html.erb (36.8ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (2.2ms)
+Completed 200 OK in 56ms (Views: 53.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2018-08-23 16:45:37 +0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (5.4ms)
+  Rendered layouts/_rails_default.html.erb (75.0ms)
+  Rendered layouts/_header.html.erb (4.1ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 110ms (Views: 95.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-08-23 16:45:44 +0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dlO+JHx1RF7FcdYfHEYVniIjolYjCx0C+tLVVRryxQhj4wyiTR0kIVghn66FW4Q16DnQzxfWeCQmFPW+tiWc0A==", "session"=>{"email"=>"phamvanle@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:54
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:54
+Redirected to http://localhost:3000/
+Completed 302 Found in 182ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:45:44 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (3.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (14.4ms)
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered shared/_micropost_form.html.erb (3.7ms)
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (0.5ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [5 times] (26.4ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1)[0m
+  ↳ app/views/shared/_feed.html.erb:5
+  Rendered shared/_feed.html.erb (35.4ms)
+  Rendered static_pages/home.html.erb within layouts/application (61.6ms)
+  Rendered layouts/_rails_default.html.erb (35.5ms)
+  Rendered layouts/_header.html.erb (2.2ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 149ms (Views: 104.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:45:54 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (3.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (5.3ms)
+  Rendered shared/_error_messages.html.erb (0.9ms)
+  Rendered shared/_micropost_form.html.erb (3.7ms)
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (0.5ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [5 times] (13.2ms)
+  [1m[35mCACHE  (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 1)[0m
+  ↳ app/views/shared/_feed.html.erb:5
+  Rendered shared/_feed.html.erb (24.0ms)
+  Rendered static_pages/home.html.erb within layouts/application (41.3ms)
+  Rendered layouts/_rails_default.html.erb (39.5ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (2.5ms)
+Completed 200 OK in 100ms (Views: 89.9ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:45:58 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (13.3ms)
+  Rendered users/index.html.erb within layouts/application (23.3ms)
+  Rendered layouts/_rails_default.html.erb (46.5ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (2.5ms)
+Completed 200 OK in 87ms (Views: 80.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-08-23 16:46:00 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (11.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (1.6ms)
+  [1m[36mMicropost Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.6ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (18.1ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (47.5ms)
+  Rendered layouts/_rails_default.html.erb (39.0ms)
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (3.2ms)
+Completed 200 OK in 107ms (Views: 98.0ms | ActiveRecord: 2.7ms)
+
+
+Started DELETE "/microposts/183" for 127.0.0.1 at 2018-08-23 16:46:06 +0700
+Processing by MicropostsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cbraJpiFXaJ4tUSTDL7ADuIc9FgEMKCmGN1y67+iUGdlX7+bMF7eIpK4BbIpQP7obeDu0rTb0dpoFaMtzoiVog==", "id"=>"183"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mMicropost Load (0.2ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? AND "microposts"."id" = ? LIMIT ?[0m  [["user_id", 1], ["id", 183], ["LIMIT", 1]]
+  ↳ app/controllers/microposts_controller.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/microposts_controller.rb:17
+  [1m[36mMicropost Destroy (0.4ms)[0m  [1m[31mDELETE FROM "microposts" WHERE "microposts"."id" = ?[0m  [["id", 183]]
+  ↳ app/controllers/microposts_controller.rb:17
+  [1m[35m (98.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/microposts_controller.rb:17
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 112ms (ActiveRecord: 99.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-08-23 16:46:06 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (6.7ms)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (0.6ms)
+  [1m[36mMicropost Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (15.7ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (34.2ms)
+  Rendered layouts/_rails_default.html.erb (35.8ms)
+  Rendered layouts/_header.html.erb (4.2ms)
+  Rendered layouts/_footer.html.erb (2.9ms)
+Completed 200 OK in 91ms (Views: 81.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:46:24 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (5.9ms)
+  Rendered users/index.html.erb within layouts/application (20.3ms)
+  Rendered layouts/_rails_default.html.erb (52.4ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 89ms (Views: 83.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users?page=6" for 127.0.0.1 at 2018-08-23 16:46:26 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 50]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [1 times] (3.9ms)
+  Rendered users/index.html.erb within layouts/application (14.3ms)
+  Rendered layouts/_rails_default.html.erb (45.9ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 77ms (Views: 71.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/55" for 127.0.0.1 at 2018-08-23 16:46:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (10.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 1], ["id", 55], ["LIMIT", 1]]
+  ↳ app/models/user.rb:94
+  Rendered users/_follow.html.erb (11.8ms)
+  Rendered users/_follow_form.html.erb (19.4ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 55], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.8ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 55], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [1 times] (3.3ms)
+  Rendered users/show.html.erb within layouts/application (45.9ms)
+  Rendered layouts/_rails_default.html.erb (37.0ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.4ms)
+Completed 200 OK in 100ms (Views: 88.5ms | ActiveRecord: 4.2ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-08-23 16:54:35 +0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cyrURxY7KRO3yatEpq5xe1Wl3UMGnglVhlIT4GDoONtnz7H6vuCqk13E6mWDUE+d2lnHybZ1eCn2msImEcL9Hg=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:54
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:54
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:54:35 +0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_rails_default.html.erb (36.2ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 54ms (Views: 49.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2018-08-23 16:54:38 +0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_rails_default.html.erb (43.8ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (1.8ms)
+Completed 200 OK in 66ms (Views: 63.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/password_resets/new" for 127.0.0.1 at 2018-08-23 16:54:39 +0700
+Processing by PasswordResetsController#new as HTML
+  Rendering password_resets/new.html.erb within layouts/application
+  Rendered password_resets/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_rails_default.html.erb (29.9ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 55ms (Views: 51.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/password_resets" for 127.0.0.1 at 2018-08-23 16:54:41 +0700
+Processing by PasswordResetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WIPlesR3GsMmPMRw3ah1bM7hzKDyQiJVRO983u8vvxHbfR8wNyfSv0qLanXf6IB7Ur7Nw0Qf5Y9Q0aTfHnFD/g==", "password_reset"=>"[FILTERED]", "commit"=>"Submit"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:71
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "reset_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["reset_digest", "$2a$10$2i3ha3LKLkEtYDjmZFPEweYFfGRgQomtgc5nvaXaiMz2NIgZO2pp6"], ["updated_at", "2018-08-23 09:54:42.023149"], ["id", 55]]
+  ↳ app/models/user.rb:71
+  [1m[35m (178.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:71
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:72
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "reset_sent_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2018-08-23 09:54:42.206748"], ["reset_sent_at", "2018-08-23 09:54:42.205824"], ["id", 55]]
+  ↳ app/models/user.rb:72
+  [1m[35m (93.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:72
+  Rendering user_mailer/password_reset.html.erb within layouts/mailer
+  Rendered user_mailer/password_reset.html.erb within layouts/mailer (1.2ms)
+  Rendering user_mailer/password_reset.text.erb within layouts/mailer
+  Rendered user_mailer/password_reset.text.erb within layouts/mailer (0.5ms)
+UserMailer#password_reset: processed outbound mail in 39.3ms
+Sent mail to phamvanle10dt2.bkdn@gmail.com (1811.9ms)
+Date: Thu, 23 Aug 2018 16:54:42 +0700
+From: noreply@example.com
+To: phamvanle10dt2.bkdn@gmail.com
+Message-ID: <5b7e8462686ef_33c01d309542466f@vanle-Aspire-5755G.mail>
+Subject: Password reset
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b7e846266ebd_33c01d309542453c";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b7e846266ebd_33c01d309542453c
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+To reset your password click the link below:
+
+http://localhost:3000/password_resets/D18OhdtDIhbX6vvV0Mnbww/edit?email=phamvanle10dt2.bkdn%40gmail.com
+
+This link will expire in two hours.
+
+If you did not request your password to be reset, please ignore this email and
+your password will stay as it is.
+
+
+----==_mimepart_5b7e846266ebd_33c01d309542453c
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Password reset</h1>
+
+<p>To reset your password click the link below:</p>
+
+<a href="http://localhost:3000/password_resets/D18OhdtDIhbX6vvV0Mnbww/edit?email=phamvanle10dt2.bkdn%40gmail.com">Reset password</a>
+
+<p>This link will expire in two hours.</p>
+
+<p>If you did not request your password to be reset, please ignore this email and your password will stay as it is.</p>
+
+  </body>
+</html>
+
+----==_mimepart_5b7e846266ebd_33c01d309542453c--
+
+Completed 500 Internal Server Error in 2329ms (ActiveRecord: 274.0ms)
+
+
+  
+Net::SMTPAuthenticationError (535-5.7.8 Username and Password not accepted. Learn more at
+):
+  
+app/models/user.rb:66:in `send_password_reset_email'
+app/controllers/password_resets_controller.rb:10:in `create'
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:56:36 +0700
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/vanle/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (295.1ms)
+  Rendered layouts/_rails_default.html.erb (48.1ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 370ms (Views: 354.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2018-08-23 16:56:38 +0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (8.9ms)
+  Rendered layouts/_rails_default.html.erb (37.3ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (2.5ms)
+Completed 200 OK in 62ms (Views: 57.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/password_resets/new" for 127.0.0.1 at 2018-08-23 16:56:39 +0700
+Processing by PasswordResetsController#new as HTML
+  Rendering password_resets/new.html.erb within layouts/application
+  Rendered password_resets/new.html.erb within layouts/application (7.9ms)
+  Rendered layouts/_rails_default.html.erb (51.5ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 76ms (Views: 69.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/password_resets" for 127.0.0.1 at 2018-08-23 16:56:44 +0700
+Processing by PasswordResetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ol2/udHm70hY2U2iSq115qexd6iOpIns+UP3olQm2EIho0XzIrYnNDRu46dI7YDxO+52yzj5TjbtfS+jpXgkrQ==", "password_reset"=>"[FILTERED]", "commit"=>"Submit"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:71
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "reset_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["reset_digest", "$2a$10$rQaia5F3n3QE84YVo8U6tO2.1ZfVMY2fDcr90SL2v.Xcp.oJucVdy"], ["updated_at", "2018-08-23 09:56:44.423343"], ["id", 55]]
+  ↳ app/models/user.rb:71
+  [1m[35m (93.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:71
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:72
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ?, "reset_sent_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2018-08-23 09:56:44.526249"], ["reset_sent_at", "2018-08-23 09:56:44.522710"], ["id", 55]]
+  ↳ app/models/user.rb:72
+  [1m[35m (91.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:72
+  Rendering user_mailer/password_reset.html.erb within layouts/mailer
+  Rendered user_mailer/password_reset.html.erb within layouts/mailer (1.2ms)
+  Rendering user_mailer/password_reset.text.erb within layouts/mailer
+  Rendered user_mailer/password_reset.text.erb within layouts/mailer (1.0ms)
+UserMailer#password_reset: processed outbound mail in 42.8ms
+Sent mail to phamvanle10dt2.bkdn@gmail.com (4089.5ms)
+Date: Thu, 23 Aug 2018 16:56:44 +0700
+From: noreply@example.com
+To: phamvanle10dt2.bkdn@gmail.com
+Message-ID: <5b7e84dcb589f_35f1255667475554@vanle-Aspire-5755G.mail>
+Subject: Password reset
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b7e84dcb42d2_35f125566747547f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b7e84dcb42d2_35f125566747547f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+To reset your password click the link below:
+
+http://localhost:3000/password_resets/Mze0aNioVGrLZJdoHf0uUA/edit?email=phamvanle10dt2.bkdn%40gmail.com
+
+This link will expire in two hours.
+
+If you did not request your password to be reset, please ignore this email and
+your password will stay as it is.
+
+
+----==_mimepart_5b7e84dcb42d2_35f125566747547f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Password reset</h1>
+
+<p>To reset your password click the link below:</p>
+
+<a href="http://localhost:3000/password_resets/Mze0aNioVGrLZJdoHf0uUA/edit?email=phamvanle10dt2.bkdn%40gmail.com">Reset password</a>
+
+<p>This link will expire in two hours.</p>
+
+<p>If you did not request your password to be reset, please ignore this email and your password will stay as it is.</p>
+
+  </body>
+</html>
+
+----==_mimepart_5b7e84dcb42d2_35f125566747547f--
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 4562ms (ActiveRecord: 188.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:56:48 +0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_rails_default.html.erb (40.6ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (3.3ms)
+Completed 200 OK in 64ms (Views: 58.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/password_resets/Mze0aNioVGrLZJdoHf0uUA/edit?email=phamvanle10dt2.bkdn%40gmail.com" for 127.0.0.1 at 2018-08-23 16:57:15 +0700
+Processing by PasswordResetsController#edit as HTML
+  Parameters: {"email"=>"phamvanle10dt2.bkdn@gmail.com", "id"=>"Mze0aNioVGrLZJdoHf0uUA"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:37
+  Rendering password_resets/edit.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.7ms)
+  Rendered password_resets/edit.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_rails_default.html.erb (37.7ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 165ms (Views: 51.1ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/password_resets/Mze0aNioVGrLZJdoHf0uUA" for 127.0.0.1 at 2018-08-23 16:57:25 +0700
+Processing by PasswordResetsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ws2AdW7WMflNRamQ1T9SuddoQMpfp+SOWpmXZvs6gIHWKOXIxg2yeadI6LHwwWxfWJRaQO9MlfIqUUagihBFRA==", "email"=>"phamvanle10dt2.bkdn@gmail.com", "user"=>{"password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Update", "id"=>"Mze0aNioVGrLZJdoHf0uUA"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/password_resets_controller.rb:25
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND "users"."id" != ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/password_resets_controller.rb:25
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["password_digest", "$2a$10$XBhcY8OUoq3FI9iCHfz80OBIasAXwEWis0JYXnZQjpjtJ2gATkrVW"], ["updated_at", "2018-08-23 09:57:25.257951"], ["id", 55]]
+  ↳ app/controllers/password_resets_controller.rb:25
+  [1m[35m (119.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/password_resets_controller.rb:25
+Redirected to http://localhost:3000/users/55
+Completed 302 Found in 348ms (ActiveRecord: 121.6ms)
+
+
+Started GET "/users/55" for 127.0.0.1 at 2018-08-23 16:57:25 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (12.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (0.9ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 55], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 55], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [1 times] (4.0ms)
+  Rendered users/show.html.erb within layouts/application (41.5ms)
+  Rendered layouts/_rails_default.html.erb (41.8ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 114ms (Views: 89.9ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/users/55/followers" for 127.0.0.1 at 2018-08-23 16:57:29 +0700
+Processing by UsersController#followers as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (4.0ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/users/show_follow.html.erb:23
+  Rendered users/show_follow.html.erb within layouts/application (10.7ms)
+  Rendered layouts/_rails_default.html.erb (44.3ms)
+  Rendered layouts/_header.html.erb (4.2ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 83ms (Views: 70.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/55/following" for 127.0.0.1 at 2018-08-23 16:57:31 +0700
+Processing by UsersController#following as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (6.7ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? LIMIT ? OFFSET ?[0m  [["follower_id", 55], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [2 times] (1.1ms)
+  Rendered users/show_follow.html.erb within layouts/application (18.8ms)
+  Rendered layouts/_rails_default.html.erb (39.1ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 81ms (Views: 70.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-08-23 16:57:32 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (9.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 55], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:94
+  [1m[36mRelationship Load (0.3ms)[0m  [1m[34mSELECT  "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = ? AND "relationships"."followed_id" = ? LIMIT ?[0m  [["follower_id", 55], ["followed_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_unfollow.html.erb:1
+  Rendered users/_unfollow.html.erb (14.5ms)
+  Rendered users/_follow_form.html.erb (18.0ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.2ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (17.7ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (59.0ms)
+  Rendered layouts/_rails_default.html.erb (53.4ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 134ms (Views: 120.0ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:57:37 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (4.6ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (8.3ms)
+  Rendered shared/_error_messages.html.erb (1.1ms)
+  Rendered shared/_micropost_form.html.erb (9.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (0.4ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [1 times] (5.9ms)
+  Rendered shared/_feed.html.erb (13.6ms)
+  Rendered static_pages/home.html.erb within layouts/application (41.8ms)
+  Rendered layouts/_rails_default.html.erb (40.3ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 99ms (Views: 91.1ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at 2018-08-23 16:57:41 +0700
+Processing by MicropostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tqMjv4dRY1Ytv/KKLTBmBro9IfTsb9vsRMMbaZiCjRf/sn3UxbTPkKqH6YPs9N6xG22nUm/jLM+RyThbgLT9OQ==", "micropost"=>{"content"=>"asdfg"}, "commit"=>"Post"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/microposts_controller.rb:7
+  [1m[36mMicropost Create (1.1ms)[0m  [1m[32mINSERT INTO "microposts" ("content", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "asdfg"], ["user_id", 55], ["created_at", "2018-08-23 09:57:41.476601"], ["updated_at", "2018-08-23 09:57:41.476601"]]
+  ↳ app/controllers/microposts_controller.rb:7
+  [1m[35m (124.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/microposts_controller.rb:7
+Redirected to http://localhost:3000/
+Completed 302 Found in 137ms (ActiveRecord: 126.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:57:41 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (4.7ms)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (7.3ms)
+  Rendered shared/_error_messages.html.erb (1.9ms)
+  Rendered shared/_micropost_form.html.erb (5.8ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [2 times] (6.6ms)
+  Rendered shared/_feed.html.erb (10.0ms)
+  Rendered static_pages/home.html.erb within layouts/application (32.7ms)
+  Rendered layouts/_rails_default.html.erb (38.3ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 85ms (Views: 77.0ms | ActiveRecord: 2.8ms)
+
+
+Started DELETE "/microposts/187" for 127.0.0.1 at 2018-08-23 16:57:45 +0700
+Processing by MicropostsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"l4uPFAKq/bxKC14TNv8WNb4vyuLr3zuXWqImO3HAeFSDbuqpqnF+PKAGHzITASjTMdPQaFs0Susqavf9AOq9kQ==", "id"=>"187"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? AND "microposts"."id" = ? LIMIT ?[0m  [["user_id", 55], ["id", 187], ["LIMIT", 1]]
+  ↳ app/controllers/microposts_controller.rb:29
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/microposts_controller.rb:17
+  [1m[36mMicropost Destroy (0.4ms)[0m  [1m[31mDELETE FROM "microposts" WHERE "microposts"."id" = ?[0m  [["id", 187]]
+  ↳ app/controllers/microposts_controller.rb:17
+  [1m[35m (210.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/microposts_controller.rb:17
+Redirected to http://localhost:3000/
+Completed 302 Found in 223ms (ActiveRecord: 211.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:57:45 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (2.1ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (4.5ms)
+  Rendered shared/_error_messages.html.erb (0.9ms)
+  Rendered shared/_micropost_form.html.erb (4.4ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (1.0ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [1 times] (4.5ms)
+  Rendered shared/_feed.html.erb (11.8ms)
+  Rendered static_pages/home.html.erb within layouts/application (26.4ms)
+  Rendered layouts/_rails_default.html.erb (49.0ms)
+  Rendered layouts/_header.html.erb (3.0ms)
+  Rendered layouts/_footer.html.erb (2.2ms)
+Completed 200 OK in 94ms (Views: 85.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/55" for 127.0.0.1 at 2018-08-23 16:57:48 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (8.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (0.6ms)
+  [1m[36mMicropost Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 55], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 55], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [1 times] (3.4ms)
+  Rendered users/show.html.erb within layouts/application (22.1ms)
+  Rendered layouts/_rails_default.html.erb (36.3ms)
+  Rendered layouts/_header.html.erb (4.8ms)
+  Rendered layouts/_footer.html.erb (2.0ms)
+Completed 200 OK in 78ms (Views: 70.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/55/edit" for 127.0.0.1 at 2018-08-23 16:57:50 +0700
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/edit.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered users/_form.html.erb (4.7ms)
+  Rendered users/edit.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_rails_default.html.erb (41.6ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 67ms (Views: 58.0ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/users/55" for 127.0.0.1 at 2018-08-23 16:57:52 +0700
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DCoehSIHb1/WwBuhCRmlrLLs696mvZbRPoYRsekYx7X8a6qxpckXYY8Q34lUAvk2GW27El2XYVDlvJsUUeZf6w==", "user"=>{"name"=>"Pham Van Le", "email"=>"phamvanle10dt2.bkdn@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Save change", "id"=>"55"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:35
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND "users"."id" != ? LIMIT ?[0m  [["email", "phamvanle10dt2.bkdn@gmail.com"], ["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:35
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:35
+Redirected to http://localhost:3000/users/55
+Completed 302 Found in 14ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/users/55" for 127.0.0.1 at 2018-08-23 16:57:52 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (5.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (1.3ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 55], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 55], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [1 times] (4.7ms)
+  Rendered users/show.html.erb within layouts/application (21.0ms)
+  Rendered layouts/_rails_default.html.erb (42.6ms)
+  Rendered layouts/_header.html.erb (3.5ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 81ms (Views: 73.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:57:53 +0700
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/shared/_user_info.html.erb:5
+  Rendered shared/_user_info.html.erb (2.7ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (16.6ms)
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered shared/_micropost_form.html.erb (4.0ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55)[0m
+  ↳ app/views/shared/_feed.html.erb:1
+  [1m[36mMicropost Load (0.8ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE (user_id IN ('SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id') OR user_id = 55) ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/shared/_feed.html.erb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/views/microposts/_micropost.html.erb:2
+  Rendered collection of microposts/_micropost.html.erb [1 times] (5.3ms)
+  Rendered shared/_feed.html.erb (9.8ms)
+  Rendered static_pages/home.html.erb within layouts/application (38.4ms)
+  Rendered layouts/_rails_default.html.erb (35.4ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 92ms (Views: 81.8ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/help" for 127.0.0.1 at 2018-08-23 16:57:55 +0700
+Processing by StaticPagesController#help as HTML
+  Rendering static_pages/help.html.erb within layouts/application
+  Rendered static_pages/help.html.erb within layouts/application (7.8ms)
+  Rendered layouts/_rails_default.html.erb (47.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (1.4ms)
+Completed 200 OK in 73ms (Views: 68.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:57:56 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (2.5ms)
+  Rendered users/index.html.erb within layouts/application (11.2ms)
+  Rendered layouts/_rails_default.html.erb (37.0ms)
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 69ms (Views: 61.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-08-23 16:58:01 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (10.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 55], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:94
+  Rendered users/_follow.html.erb (3.4ms)
+  Rendered users/_follow_form.html.erb (11.7ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 6], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 6], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (13.4ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (47.8ms)
+  Rendered layouts/_rails_default.html.erb (44.7ms)
+  Rendered layouts/_header.html.erb (2.1ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 109ms (Views: 101.8ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/6/followers" for 127.0.0.1 at 2018-08-23 16:58:03 +0700
+Processing by UsersController#followers as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (7.3ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ? LIMIT ? OFFSET ?[0m  [["followed_id", 6], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [1 times] (4.2ms)
+  Rendered users/show_follow.html.erb within layouts/application (26.3ms)
+  Rendered layouts/_rails_default.html.erb (39.4ms)
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 92ms (Views: 77.6ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/users/6/following" for 127.0.0.1 at 2018-08-23 16:58:07 +0700
+Processing by UsersController#following as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (6.5ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? LIMIT ? OFFSET ?[0m  [["follower_id", 6], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [1 times] (0.9ms)
+  Rendered users/show_follow.html.erb within layouts/application (15.2ms)
+  Rendered layouts/_rails_default.html.erb (41.3ms)
+  Rendered layouts/_header.html.erb (3.1ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 76ms (Views: 66.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/users/6/followers" for 127.0.0.1 at 2018-08-23 16:58:09 +0700
+Processing by UsersController#followers as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (4.8ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ? LIMIT ? OFFSET ?[0m  [["followed_id", 6], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [1 times] (1.0ms)
+  Rendered users/show_follow.html.erb within layouts/application (15.1ms)
+  Rendered layouts/_rails_default.html.erb (52.0ms)
+  Rendered layouts/_header.html.erb (3.4ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 89ms (Views: 80.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/users/6/following" for 127.0.0.1 at 2018-08-23 16:58:10 +0700
+Processing by UsersController#following as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (7.5ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? LIMIT ? OFFSET ?[0m  [["follower_id", 6], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [1 times] (2.7ms)
+  Rendered users/show_follow.html.erb within layouts/application (22.7ms)
+  Rendered layouts/_rails_default.html.erb (76.1ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (1.7ms)
+Completed 200 OK in 119ms (Views: 109.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/6/followers" for 127.0.0.1 at 2018-08-23 16:58:11 +0700
+Processing by UsersController#followers as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (12.2ms)
+  [1m[35mCACHE  (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ? LIMIT ? OFFSET ?[0m  [["followed_id", 6], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [1 times] (1.8ms)
+  Rendered users/show_follow.html.erb within layouts/application (26.9ms)
+  Rendered layouts/_rails_default.html.erb (47.5ms)
+  Rendered layouts/_header.html.erb (2.0ms)
+  Rendered layouts/_footer.html.erb (1.6ms)
+Completed 200 OK in 100ms (Views: 85.2ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-08-23 16:58:13 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (6.9ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 55], ["id", 6], ["LIMIT", 1]]
+  ↳ app/models/user.rb:94
+  Rendered users/_follow.html.erb (3.7ms)
+  Rendered users/_follow_form.html.erb (7.6ms)
+  [1m[36mMicropost Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 6], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 6], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (27.9ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (59.9ms)
+  Rendered layouts/_rails_default.html.erb (51.9ms)
+  Rendered layouts/_header.html.erb (3.6ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 129ms (Views: 122.3ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/relationships" for 127.0.0.1 at 2018-08-23 16:58:15 +0700
+Processing by RelationshipsController#create as JS
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ckysd79tAFdZ+Unwrx+viaQKI+5WTe4w/DeqKVG0etKhMDAmWas0WwP8SX74OXH2GWG8eETgiv8bjUkyf56L4g==", "followed_id"=>"6", "commit"=>"Follow"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/relationships_controller.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:86
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/models/user.rb:86
+  [1m[36mRelationship Create (1.2ms)[0m  [1m[32mINSERT INTO "relationships" ("follower_id", "followed_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["follower_id", 55], ["followed_id", 6], ["created_at", "2018-08-23 09:58:15.327759"], ["updated_at", "2018-08-23 09:58:15.327759"]]
+  ↳ app/models/user.rb:86
+  [1m[35m (119.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:86
+  Rendering relationships/create.js.erb
+  [1m[36mRelationship Load (0.3ms)[0m  [1m[34mSELECT  "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = ? AND "relationships"."followed_id" = ? LIMIT ?[0m  [["follower_id", 55], ["followed_id", 6], ["LIMIT", 1]]
+  ↳ app/views/users/_unfollow.html.erb:1
+  Rendered users/_unfollow.html.erb (3.5ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 6]]
+  ↳ app/views/relationships/create.js.erb:2
+  Rendered relationships/create.js.erb (8.4ms)
+Completed 200 OK in 151ms (Views: 14.2ms | ActiveRecord: 122.1ms)
+
+
+Started GET "/users/55" for 127.0.0.1 at 2018-08-23 16:58:19 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"55"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 55]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (22.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (0.7ms)
+  [1m[36mMicropost Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 55], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 55]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 55], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [1 times] (5.2ms)
+  Rendered users/show.html.erb within layouts/application (40.6ms)
+  Rendered layouts/_rails_default.html.erb (44.8ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (1.7ms)
+Completed 200 OK in 106ms (Views: 98.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:58:23 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (6.1ms)
+  Rendered users/index.html.erb within layouts/application (16.0ms)
+  Rendered layouts/_rails_default.html.erb (61.4ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 95ms (Views: 90.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users?page=6" for 127.0.0.1 at 2018-08-23 16:58:24 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 50]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [1 times] (1.6ms)
+  Rendered users/index.html.erb within layouts/application (12.6ms)
+  Rendered layouts/_rails_default.html.erb (45.8ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 74ms (Views: 68.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users?page=2" for 127.0.0.1 at 2018-08-23 16:58:27 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 10]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (2.6ms)
+  Rendered users/index.html.erb within layouts/application (14.7ms)
+  Rendered layouts/_rails_default.html.erb (49.9ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (1.7ms)
+Completed 200 OK in 83ms (Views: 76.8ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users/11" for 127.0.0.1 at 2018-08-23 16:58:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 11]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 11]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (6.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 55], ["id", 11], ["LIMIT", 1]]
+  ↳ app/models/user.rb:94
+  Rendered users/_follow.html.erb (2.3ms)
+  Rendered users/_follow_form.html.erb (9.5ms)
+  [1m[36mMicropost Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  Rendered users/show.html.erb within layouts/application (25.4ms)
+  Rendered layouts/_rails_default.html.erb (45.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (4.8ms)
+Completed 200 OK in 94ms (Views: 85.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:58:33 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (6.5ms)
+  Rendered users/index.html.erb within layouts/application (30.6ms)
+  Rendered layouts/_rails_default.html.erb (93.1ms)
+  Rendered layouts/_header.html.erb (4.2ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 147ms (Views: 141.1ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2018-08-23 16:58:36 +0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"K7iSWik5Om37T/bJMzp0VzCil4QR+6IpLItzDAo6PJA/XffngeK57RFCt+gWxEqxv16NDqEQ01VcQ6LKexD5VQ=="}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 55], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:54
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:54
+Redirected to http://localhost:3000/
+Completed 302 Found in 14ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-08-23 16:58:36 +0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (5.1ms)
+  Rendered layouts/_rails_default.html.erb (76.4ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 98ms (Views: 92.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2018-08-23 16:58:38 +0700
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_rails_default.html.erb (42.3ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (1.1ms)
+Completed 200 OK in 59ms (Views: 54.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2018-08-23 16:58:44 +0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"L/e7hrYsytnLLVCKhcaInJBDJwz7civZrtBHNjgYpAs6RwkAh0SqplZ9GTsc2xk3WllVlc+vTv9yFmfdlM/90w==", "session"=>{"email"=>"phamvanle@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "phamvanle@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:54
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:54
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 116ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-08-23 16:58:44 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (4.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered users/_follow_form.html.erb (0.8ms)
+  [1m[36mMicropost Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "microposts" WHERE "microposts"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:16
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:17
+  [1m[36mMicropost Load (0.4ms)[0m  [1m[34mSELECT  "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ? ORDER BY "microposts"."created_at" DESC LIMIT ? OFFSET ?[0m  [["user_id", 1], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/show.html.erb:19
+  Rendered collection of microposts/_micropost.html.erb [10 times] (17.0ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:21
+  Rendered users/show.html.erb within layouts/application (37.0ms)
+  Rendered layouts/_rails_default.html.erb (40.3ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (1.7ms)
+Completed 200 OK in 93ms (Views: 86.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users/1/followers" for 127.0.0.1 at 2018-08-23 16:58:50 +0700
+Processing by UsersController#followers as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[36mCACHE User Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  Rendering users/show_follow.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show_follow.html.erb:8
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:4
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/shared/_stats.html.erb:9
+  Rendered shared/_stats.html.erb (12.5ms)
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/users/show_follow.html.erb:12
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = ? LIMIT ? OFFSET ?[0m  [["followed_id", 1], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/show_follow.html.erb:14
+  Rendered collection of users/_user.html.erb [29 times] (21.1ms)
+  Rendered users/show_follow.html.erb within layouts/application (53.9ms)
+  Rendered layouts/_rails_default.html.erb (39.6ms)
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 123ms (Views: 106.0ms | ActiveRecord: 5.0ms)
+
+
+Started DELETE "/users/7" for 127.0.0.1 at 2018-08-23 16:58:57 +0700
+Processing by UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"wymt1R6o4RI7Hz9LX4fUrSEBV3R3EBrHgf/Av2XpD7/XzMhotnNiktESfmp6eepLrv1N/sf7a7vxNxF5FMPKeg==", "id"=>"7"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:80
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mMicropost Load (0.3ms)[0m  [1m[34mSELECT "microposts".* FROM "microposts" WHERE "microposts"."user_id" = ?[0m  [["user_id", 7]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mRelationship Load (0.2ms)[0m  [1m[34mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 7]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mRelationship Destroy (1.1ms)[0m  [1m[31mDELETE FROM "relationships" WHERE "relationships"."id" = ?[0m  [["id", 43]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mRelationship Load (0.2ms)[0m  [1m[34mSELECT "relationships".* FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 7]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mRelationship Destroy (0.1ms)[0m  [1m[31mDELETE FROM "relationships" WHERE "relationships"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/users_controller.rb:44
+  [1m[35m (123.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44
+Redirected to http://localhost:3000/users
+Completed 302 Found in 144ms (ActiveRecord: 125.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-08-23 16:58:57 +0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (9.2ms)
+  Rendered users/index.html.erb within layouts/application (16.7ms)
+  Rendered layouts/_rails_default.html.erb (41.1ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 72ms (Views: 67.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users?page=5" for 127.0.0.1 at 2018-08-23 16:59:00 +0700
+Processing by UsersController#index as HTML
+  Parameters: {"page"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 10], ["OFFSET", 40]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [10 times] (6.6ms)
+  Rendered users/index.html.erb within layouts/application (20.6ms)
+  Rendered layouts/_rails_default.html.erb (40.9ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 80ms (Views: 73.6ms | ActiveRecord: 1.0ms)
+
+
