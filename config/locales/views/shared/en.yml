@@ -1,0 +1,18 @@
+en:
+  shared:
+    error_messages:
+      text: "The form contains"
+      error:
+        one: "1 error"
+        other: "%{count} errors"
+    micropost_form:
+      placeholder: "Compose new micropost..."
+      submit: "Post"
+    user_info:
+      my_profile: "View my profile"
+      micropost:
+        one: "1 micropost"
+        other: "%{count} microposts"
+    stats:
+      following: "following"
+      followers: "followers"

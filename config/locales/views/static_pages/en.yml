@@ -1,0 +1,36 @@
+en:
+  static_pages:
+    home:
+      micropost_feed: "Micropost Feed"
+      home: "Home"
+      wellcome: "wellcome to the Sample App"
+      text_1: "This is the home page for the"
+      body_link_book: "<em>Ruby on Rails Tutorial</em>"
+      link_book: "http://www.railstutorial.org/"
+      text_2: "sample application."
+      body_link_signup: "Sign up now!"
+      alt_image: "Rails logo"
+      micropost_feed: "Micropost Feed"
+    help:
+      help: "Help"
+      text_1: "Get help on the Ruby on Rails Tutorial at the"
+      help_link: "Rails Tutorial help page"
+      text_2: "To get help on this sample app, see the"
+      book_link: "<em>Ruby on Rails Tutorial</em> book."
+    about:
+      about: "About"
+      text_1: "The"
+      body_link_1: "<em>Ruby on Rails Tutorial</em>"
+      text_2: "is a"
+      body_link_2: "book"
+      text_3: "and"
+      body_link_3: "screencast series"
+      text_4: "to teach web development with"
+      body_link_4: "Ruby on Rails"
+      text_5: "This is the sample application for the tutorial."
+    contact:
+      contact: "Contact"
+      text: "Contact the Ruby on Rails Tutorial about the sample app at the"
+      contact_link: "contact page"
+
+

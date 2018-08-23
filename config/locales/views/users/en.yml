@@ -1,0 +1,29 @@
+en:
+  users:
+    new:
+      signup: "Sign up"
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirmation: "Confirmation"
+      submit: "Create my account"
+    edit:
+      edit_user: "Edit user"
+      submit: "Save change"
+      change_avatar: "Change"
+    index:
+      all_users: "All users"
+    show:
+      microposts: "Microposts"
+    user:
+      delete: "delete"
+      sure?: "You sure?"
+    show:
+      microposts: "Microposts"
+    follow:
+      submit: "Follow"
+    unfollow:
+      submit: "Unfollow"
+    show_follow:
+      microposts: "Microposts:"
+      my_profile: "View my proflie"

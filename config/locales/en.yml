@@ -1,0 +1,71 @@
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  users:
+    create:
+      info_mess: "Please check your email to activate your account!"
+    update:
+      success_mess: "Update profile success!"
+    destroy:
+      success_mess: "User deleted!"
+    logged_in_user:
+      warning_mess: "Please log in!"
+    following: "Following"
+    followers: "Followers"
+  account_activations:
+    edit:
+      success_mess: "Account activated!"
+      danger_mess: "Invalid activation link"
+  sessions:
+    create:
+      warning_mess: "Account not activated. Check your email for the activation link."
+      danger_mess: "Invalid email/password combination"
+  user_mailer:
+    account_activation:
+      activation: "Account activation"
+    password_reset:
+      pass_reset: "Password reset"
+  password_resets:
+    create:
+      info_mess: "Email sent with password reset instructions"
+      danger_mess: "Email address not found"
+    update:
+      error_mess: "can't be empty"
+      success_mess: "Password has been reset."
+    check_expire:
+      danger_mess: "Password reset has expired."
+  microposts:
+    create:
+      success_create: "Micropost created!"
+    destroy:
+      success_deleted: "Micropost deleted!"
+    correct_user:
+      permission: "You don’t have permission"
